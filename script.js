@@ -10,6 +10,7 @@ const generateRotation = () => {
 
 startButton.addEventListener('click', () => {
 	startButton.setAttribute('disabled', true);
+	startButton.style.cursor = 'disabled';
 	startButton.style.opacity = 0.3;
 	const rotationDegree = generateRotation();
 	if (rotationDegree % 360 === 0) {
@@ -32,7 +33,7 @@ startButton.addEventListener('click', () => {
 	<input id="emotion-input" type="text" name="emotion" />
 	<p id="example" style="opacity: 0;">Cuéntanos algo que te haga sentir de esa manera, por ejemplo:<br />
 	<span id="emotion-example"></span></p>
-	<button id="restart-button"  style="opacity: 0;">Tirar de nuevo</button>
+	<button id="restart-button"  style="opacity: 0;cursor: pointer;">Tirar de nuevo</button>
 	`;
 	
 	const example = document.querySelector('#example');
@@ -61,6 +62,7 @@ startButton.addEventListener('click', () => {
 			module.innerText = '';
 			startButton.removeAttribute('disabled');
 			startButton.style.opacity = 1;
+			startButton.style.cursor = 'pointer';
 		}, 5000);
 	});
 
