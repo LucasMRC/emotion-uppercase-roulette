@@ -1,11 +1,16 @@
 const container = document.querySelector('#container');
 const roulette = document.querySelector('.roulette');
 const startButton = document.querySelector('#start-button');
+let emotionRotations = [ 90, 180, 270, 360 ];
 let emotion = '';
 
 const generateRotation = () => {
-	const number = Math.floor(Math.random() * 10 + 45);
-	return number * 90;
+	const number = Math.floor(Math.random() * 10 + 1);
+	const index = Math.floor(Math.random() * emotionRotations.length); 
+	const result = number * 360 + emotionRotations[index];
+	emotionRotations.splice(index, 1);
+	emotionRotations.length === 0 && (emotionRotations = [ 90, 180, 270, 360 ]);
+	return result;
 };
 
 startButton.addEventListener('click', () => {
@@ -44,7 +49,7 @@ startButton.addEventListener('click', () => {
 			emotionExample.innerText = '"Máximo está triste porque extraña a sus amigos."';
 			break;
 		case 'miedo':
-			emotionExample.innerText = '"Mónica siente miedo de no ir a la escuela por muchos meses."';
+			emotionExample.innerText = '"Mónica siente miedo de no ir a la escuela por varias semanas."';
 			break;
 		case 'alegría':
 			emotionExample.innerText = '"Pedro está contento porque está jugando más con su familia."';
@@ -72,6 +77,7 @@ startButton.addEventListener('click', () => {
 		emotionInput.setAttribute('placeholder', 'Emoción');
 		emotionInput.setAttribute('autofocus', true);
 		emotionInput.addEventListener('keyup', ({ target }) => {
+			if (target.value === 'alegria' && emotion === 'alegría') alert('¡Me parece que te olvidaste un acento!');
 			if (target.value !== emotion) return;
 			example.style.opacity = 1;
 			setTimeout(() => {
