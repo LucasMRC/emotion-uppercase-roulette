@@ -70,6 +70,7 @@ button:first-of-type {
     border-radius: 10px;
 	width: 12rem;
 	margin: 2rem 0;
+	text-transform: uppercase;
 }
 
 #example {

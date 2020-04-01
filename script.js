@@ -19,13 +19,13 @@ startButton.addEventListener('click', () => {
 	startButton.style.opacity = 0.3;
 	const rotationDegree = generateRotation();
 	if (rotationDegree % 360 === 0) {
-		emotion = 'enojo';
+		emotion = 'ENOJO';
 	} else if ((rotationDegree - 270) % 360 === 0) {
-		emotion = 'tristeza';
+		emotion = 'TRISTEZA';
 	} else if ((rotationDegree - 180) % 360 === 0) {
-		emotion = 'alegría';
+		emotion = 'ALEGRIA';
 	} else {
-		emotion = 'miedo';
+		emotion = 'MIEDO';
 	}
 	
 	roulette.style.transform = `rotate(${rotationDegree}deg)`;
@@ -33,29 +33,29 @@ startButton.addEventListener('click', () => {
 
 	
 	module.innerHTML = `
-	<h1 class="module-title">Ingresa el nombre de esta emoción:</h1>
+	<h1 class="module-title">INGRESA EL NOMBRE DE ESTA EMOCION:</h1>
 	<img class="emotion-picture" src="./images/${emotion}.png" alt="${emotion}" />
 	<input id="emotion-input" type="text" name="emotion" />
-	<p id="example" style="opacity: 0;">Cuéntanos algo que te haga sentir de esa manera, por ejemplo:<br />
+	<p id="example" style="opacity: 0;">CUENTANOS ALGO QUE TE HAGA SENTIR DE ESA MANERA, POR EJEMPLO:<br />
 	<span id="emotion-example"></span></p>
-	<button id="restart-button"  style="opacity: 0;cursor: pointer;">Tirar de nuevo</button>
+	<button id="restart-button"  style="opacity: 0;cursor: pointer;margin: 0;">TIRAR DE NUEVO</button>
 	`;
 	
 	const example = document.querySelector('#example');
 	const emotionExample = document.querySelector('#emotion-example');
 
 	switch (emotion) {
-		case 'tristeza':
-			emotionExample.innerText = '"Máximo está triste porque extraña a sus amigos."';
+		case 'TRISTEZA':
+			emotionExample.innerText = '"Máximo está triste porque extraña a sus amigos."'.toUpperCase();
 			break;
-		case 'miedo':
-			emotionExample.innerText = '"Mónica siente miedo de no ir a la escuela por varias semanas."';
+		case 'MIEDO':
+			emotionExample.innerText = '"Mónica siente miedo de no ir a la escuela por varias semanas."'.toUpperCase();
 			break;
-		case 'alegría':
-			emotionExample.innerText = '"Pedro está contento porque está jugando más con su familia."';
+		case 'ALEGRIA':
+			emotionExample.innerText = '"Pedro está contento porque está jugando más con su familia."'.toUpperCase();
 			break;
 		default:
-			emotionExample.innerText = '"Juana está enojada porque no puede salir a andar en bicicleta."';
+			emotionExample.innerText = '"Juana está enojada porque no puede salir a andar en bicicleta."'.toUpperCase();
 			break;
 	}
 
@@ -77,7 +77,8 @@ startButton.addEventListener('click', () => {
 		emotionInput.setAttribute('placeholder', 'Emoción');
 		emotionInput.setAttribute('autofocus', true);
 		emotionInput.addEventListener('keyup', ({ target }) => {
-			if (target.value === 'alegria' && emotion === 'alegría') alert('¡Me parece que te olvidaste un acento!');
+			emotionInput.value = target.value.toUpperCase();
+			console.log(emotionInput.value);
 			if (target.value !== emotion) return;
 			example.style.opacity = 1;
 			setTimeout(() => {
